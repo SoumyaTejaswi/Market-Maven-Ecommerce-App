@@ -1,0 +1,8 @@
+Repo layer in springboot handles db operations and provides abstraction layer between the application and the
+database.
+
+These repos extend Spring Data JPA interfaces like JpaRepository providing:
+    -Built in CRUD operations
+    -Custom query methods
+    -database transaction management.
+    -Data Persistance layer abstraction.

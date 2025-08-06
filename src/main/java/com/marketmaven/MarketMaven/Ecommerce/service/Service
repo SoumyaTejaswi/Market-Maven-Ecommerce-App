@@ -1,0 +1,2 @@
+Crucial Part of the application that contains business logic and acts as a intermediate between controllers and
+repositories.It handles data processing,business rules and coordinates between different components.

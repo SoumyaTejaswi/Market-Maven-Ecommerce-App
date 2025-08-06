@@ -1,0 +1,32 @@
+Step 1:Provide credintials at the login page
+POST auth/login
+{
+    "email": "tejaswisoumya@gmail.com",
+    "password": "pass123"
+}
+Step 2:
+AuthenticationManager in SecurityConfig is called for issuing the JWT Token.
+Creates authentication token
+UsernamePasswordAuthenticationToken token =new UsernamePasswordAuthenticationToken(username, password);
+AuthenticationManager processes this token by:
+    ->Loading user details via CustomUserDetailsService (CustomrUserDetailsService.java)
+    -> Here if the details are present in the database then Auth user is called and its object is created.
+    ->In auth user,role is returned,the username and pw is converted to Bcrypt hashing that is pw encoder is called in securityconfig and pw is verfied if its same as db and pw is retuend,checks if the token is valid and if the account is not
+    expired or not.
+(SecurityConfig,CustomerUserDetailsService,AuthUser)
+Step 3:
+After the token is generated,we go to JwtAuthFilter checks.
+We pass the token to getTokenFromRequest to complete some checks,that is get the proper token to pass
+it to internal filter checks.
+Step 4:
+Now the after extracting the token,if it exists then it is passed through JwtUtils.The username is get from the token and checked if all the claims(i.e username,issuedate,expirydate)
+Then it checks if it matches the db data sp it goes to customerUserDetailsService.
+Now it checks if the username is string and the token is matched with the db it creates a temprory authenticationToken using UsernamePasswordAuthenticationToken.
+The entry or the login info is stored and the secuirty context is set and we can login now.
+
+
+
+
+
+
+

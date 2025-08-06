@@ -1,0 +1,23 @@
+To host this application we are going to be using a AWS S3 which is almost free and relatively lower cost.
+Steps on what i did while trying to do so.
+
+AWS Root user sign in->In search bar type IAM AND CLICK iam ->On the lft click the users option->create user->market maven->next->attach policies->search for s3->amazon s3 full access->next->click on create user->click on the user create->going to create a access key
+->So the access key is going to be the credentials which we will be using to use this user to save our images of the product on our S3 bucket.->other->next->access key description tag value-market maven->copy the access key->go to application properties and give the command as:
+aws.s3.access=access_key
+and
+aws.s3.secrete=secret_key which should be well hidden cause if they get access to that they can go to the aws s3 pockets.
+->download your csv file from the aws website.->now again search for s3->s3 is the bucket or the folder where we store files on(store images,store multimedia files,store static files you can use to deploy your front end,bundle your front end application and keep it.)->Createbucket->name it market maven->untick the check box block the public access->create bucket->click on market mave->properties->policies
+->write a script within the bucket policy so that items of this bucket can be accesible->
+script:
+{
+    "version":"2012-10-17",
+    "Statement":[
+        {
+            "Effect":"Allow",
+            "Principal":"*",
+            "Action":"s3:GetObject",
+            "Resource":"arn:aws:s3:::market-maven/*"
+        }
+        ]
+}
+->save changes->object ->upload any files you want ->upload->upload can be seen while clicking on the image->copy that link to save it in the databse.->Now write an implementation

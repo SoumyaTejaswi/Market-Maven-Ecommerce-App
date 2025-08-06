@@ -1,0 +1,14 @@
+
+Data transfer object is a design pattern used to transfer data between software applications subsystems.
+Serves several important purposes:
+1.Data encapsulation:it carries only neccesary address data between layers(eg controller to service)
+2.security:prevents exposing sensitive internal details to external clients.
+3.API Flexibality:Allows you to structure the data differently from your entity model.
+4.Performance reduces network overhead by trand=sfering only req fields
+
+
+
+
+
+These DTOs help maintain a clean separation between the database entities and the data that's exposed to the client,
+while also providing a way to validate and structure data transfer.
